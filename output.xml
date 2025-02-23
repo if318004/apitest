@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.4 on darwin)" generated="2025-02-23T20:22:23.207058" rpa="false" schemaversion="5">
+<suite id="s1" name="Apitest" source="/Users/gitajuwitos/apitest/apitest.robot">
+<test id="s1-t1" name="Get Single User" line="9">
+<kw name="Given the API base URL is set">
+<kw name="No Operation" owner="BuiltIn">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.332545" elapsed="0.000157"/>
+</kw>
+<status status="PASS" start="2025-02-23T20:22:23.332162" elapsed="0.000652"/>
+</kw>
+<kw name="When I send a GET request to &quot;/users/2&quot;" source_name="When I send a GET request to &quot;${endpoint}&quot;">
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-02-23T20:22:23.694386" level="INFO">GET Request : url=https://reqres.in/api/users/2 
+ path_url=/api/users/2 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-02-23T20:22:23.694723" level="INFO">GET Response : url=https://reqres.in/api/users/2 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 23 Feb 2025 13:22:23 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1740062202&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=mMPCkwF6Q1qu%2FwES5kqhZgsVIPgaIaJL44RY3gvcMR8%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1740062202&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=mMPCkwF6Q1qu%2FwES5kqhZgsVIPgaIaJL44RY3gvcMR8%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"152-ApQgGHL6RKwaebFlrPCYPBO1xHg"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '7043', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '916786426a293ddb-SIN', 'Content-Encoding': 'gzip', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=76423&amp;min_rtt=67028&amp;rtt_var=27285&amp;sent=5&amp;recv=7&amp;lost=0&amp;retrans=0&amp;sent_bytes=2835&amp;recv_bytes=770&amp;delivery_rate=62114&amp;cwnd=252&amp;unsent_bytes=0&amp;cid=742fb62cf880c27c&amp;ts=132&amp;x=0"'} 
+ body={"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://contentcaddy.io?utm_source=reqres&amp;utm_medium=json&amp;utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}} 
+ </msg>
+<msg time="2025-02-23T20:22:23.695203" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}${endpoint}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.333453" elapsed="0.361939"/>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<msg time="2025-02-23T20:22:23.698407" level="INFO">${GET_RESPONSE} = &lt;Response [200]&gt;</msg>
+<arg>${GET_RESPONSE}</arg>
+<arg>${response}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.696067" elapsed="0.002498"/>
+</kw>
+<status status="PASS" start="2025-02-23T20:22:23.333124" elapsed="0.365646"/>
+</kw>
+<kw name="Then the response status code should be 200" source_name="Then the response status code should be ${status}">
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-02-23T20:22:23.701154" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${GET_RESPONSE.status_code}</arg>
+<arg>${status}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.700116" elapsed="0.001212"/>
+</kw>
+<status status="PASS" start="2025-02-23T20:22:23.699406" elapsed="0.002065"/>
+</kw>
+<kw name="And the response should be display data of users details">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-02-23T20:22:23.704394" level="INFO">${data} = {'data': {'id': 2, 'email': 'janet.weaver@reqres.in', 'first_name': 'Janet', 'last_name': 'Weaver', 'avatar': 'https://reqres.in/img/faces/2-image.jpg'}, 'support': {'url': 'https://contentcaddy.io?ut...</msg>
+<var>${data}</var>
+<arg>${GET_RESPONSE.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.702794" elapsed="0.001677"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${data}</arg>
+<arg>data</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.704698" elapsed="0.000304"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-02-23T20:22:23.705888" level="INFO">{'id': 2, 'email': 'janet.weaver@reqres.in', 'first_name': 'Janet', 'last_name': 'Weaver', 'avatar': 'https://reqres.in/img/faces/2-image.jpg'}</msg>
+<arg>${data["data"]}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.705192" elapsed="0.000784"/>
+</kw>
+<status status="PASS" start="2025-02-23T20:22:23.701905" elapsed="0.004182"/>
+</kw>
+<status status="PASS" start="2025-02-23T20:22:23.330994" elapsed="0.375359"/>
+</test>
+<test id="s1-t2" name="POST Create User" line="15">
+<kw name="Given the API base URL is set">
+<kw name="No Operation" owner="BuiltIn">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.707541" elapsed="0.000134"/>
+</kw>
+<status status="PASS" start="2025-02-23T20:22:23.707273" elapsed="0.000477"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-02-23T20:22:23.708117" level="INFO">${body} = {"name": "morpheus", "job": "leader"}</msg>
+<var>${body}</var>
+<arg>{"name": "morpheus", "job": "leader"}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-02-23T20:22:23.707932" elapsed="0.000220"/>
+</kw>
+<kw name="When I send a POST request to &quot;/users&quot; with body" source_name="When I send a POST request to &quot;${endpoint}&quot; with body">
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-02-23T20:22:24.433082" level="INFO">POST Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '47', 'Content-Type': 'application/json'} 
+ body=b'"{\\"name\\": \\"morpheus\\", \\"job\\": \\"leader\\"}"' 
+ </msg>
+<msg time="2025-02-23T20:22:24.433303" level="INFO">POST Response : url=https://reqres.in/api/users 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Sun, 23 Feb 2025 13:22:24 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1740316944&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=GVexXeR55k%2F2fRFh1KzsZXYu140S2SGGPFobuZfKdM8%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1740316944&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=GVexXeR55k%2F2fRFh1KzsZXYu140S2SGGPFobuZfKdM8%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Content-Security-Policy': "default-src 'none'", 'X-Content-Type-Options': 'nosniff', 'Via': '1.1 vegur', 'cf-cache-status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': '9167864418bca8f7-SIN', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=76913&amp;min_rtt=69088&amp;rtt_var=26455&amp;sent=6&amp;recv=8&amp;lost=0&amp;retrans=0&amp;sent_bytes=2835&amp;recv_bytes=890&amp;delivery_rate=60265&amp;cwnd=252&amp;unsent_bytes=0&amp;cid=e6cbac324d15051d&amp;ts=457&amp;x=0"'} 
+ body=&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Error&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;pre&gt;Bad Request&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+ 
+ </msg>
+<msg time="2025-02-23T20:22:24.433824" level="FAIL">HTTPError: 400 Client Error: Bad Request for url: https://reqres.in/api/users</msg>
+<var>${response}</var>
+<arg>${BASE_URL}${endpoint}</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="FAIL" start="2025-02-23T20:22:23.708781" elapsed="0.742314">HTTPError: 400 Client Error: Bad Request for url: https://reqres.in/api/users</status>
+</kw>
+<kw name="Set Test Variable" owner="BuiltIn">
+<arg>${POST_RESPONSE}</arg>
+<arg>${response}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<status status="NOT RUN" start="2025-02-23T20:22:24.452149" elapsed="0.000102"/>
+</kw>
+<arg>${body}</arg>
+<status status="FAIL" start="2025-02-23T20:22:23.708437" elapsed="0.744327">HTTPError: 400 Client Error: Bad Request for url: https://reqres.in/api/users</status>
+</kw>
+<kw name="Then the response status code should be 201" source_name="Then the response status code should be ${status}">
+<status status="NOT RUN" start="2025-02-23T20:22:24.454343" elapsed="0.000127"/>
+</kw>
+<kw name="And the response should contain user data">
+<status status="NOT RUN" start="2025-02-23T20:22:24.455637" elapsed="0.000109"/>
+</kw>
+<status status="FAIL" start="2025-02-23T20:22:23.706796" elapsed="0.749452">HTTPError: 400 Client Error: Bad Request for url: https://reqres.in/api/users</status>
+</test>
+<status status="FAIL" start="2025-02-23T20:22:23.209985" elapsed="1.246920"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Apitest" id="s1" pass="1" fail="1" skip="0">Apitest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
